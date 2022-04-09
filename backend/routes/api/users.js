@@ -27,7 +27,11 @@ router.post("/login", async (req, res) => {
       identity: user.identity,
     };
     const token = await sign(rule, secretKey, { expiresIn: 3600 });
-    res.json({ email, msg: "登录成功", code: 0, token: "Bearer " + token });
+    res.json({
+      data: {
+        email
+      }, msg: "登录成功", code: 0, token: "Bearer " + token
+    });
   } catch (error) {
     res.json({
       msg: "服务器异常",
