@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Message, Loading } from 'element-ui';
+import router from '@/router/index'
 
 let loading;
 const startLoading = () => {
@@ -20,6 +21,10 @@ const closeLoading = () => {
 axios.interceptors.request.use(config => {
     //开启加载
     startLoading()
+    if (sessionStorage.token) {
+        console.log(sessionStorage.token);
+        config.headers.Authorization = sessionStorage.token
+    }
     return config
 }, (error) => {
     // 对请求错误做些什么
@@ -45,6 +50,15 @@ axios.interceptors.response.use(res => {
     closeLoading()
     // 对请求错误做些什么
     Message.error(error.message)
+
+    const { status } = error.response
+    if (status === '401') {
+        Message.error('token失效,请重新登录')
+        //清除token
+        sessionStorage.removeItem('token')
+        router.push('/login')
+    }
+
     return Promise.reject(error);
 })
 
