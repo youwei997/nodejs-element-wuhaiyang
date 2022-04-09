@@ -22,7 +22,6 @@ axios.interceptors.request.use(config => {
     //开启加载
     startLoading()
     if (sessionStorage.token) {
-        console.log(sessionStorage.token);
         config.headers.Authorization = sessionStorage.token
     }
     return config
