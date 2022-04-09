@@ -22,10 +22,13 @@ const port = process.env.PORT || 3000;
 require("./config/db");
 
 //引入user路由
-const users = require("./routes/api/user");
+const users = require("./routes/api/users");
+//收支路由
+const profiles = require("./routes/api/profiles");
 
 //使用user路由
 app.use("/api/users", users);
+app.use("/api/profiles", profiles);
 
 app.get("/", (req, res) => {
   res.send("index");
