@@ -1,4 +1,4 @@
 module.exports = {
-  URL: "mongodb://localhost:27017/vue-nodejs",
+  URL: "mongodb://localhost:27017/nodejs-element-wuhaiyang",
   secretKey: "secret",
 };
