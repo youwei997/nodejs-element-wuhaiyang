@@ -1,3 +1,4 @@
+
 <template>
     <div class="register">
         <el-container>
@@ -50,24 +51,93 @@
 </template>
 
 <script>
+import { register } from '@/api/user'
 export default {
     data() {
+        var validatePass2 = (rule, value, callback) => {
+            if (value !== this.registerForm.password) {
+                callback(new Error('两次输入密码不一致!'));
+            } else {
+                callback();
+            }
+        };
         return {
             registerForm: {
-                username: '',
-                email: '',
-                password: '',
-                password2: '',
+                username: 'username',
+                email: '1@email.com',
+                password: '123456',
+                password2: '123456',
                 identity: '',
             },
             rules: {
+                username: [
+                    {
+                        required: true,
+                        message: '用户名不能为空',
+                        trigger: 'blur',
+                    },
+                    {
+                        min: 2,
+                        max: 30,
+                        message: '长度要在2到30字符中间',
+                        trigger: 'blur',
+                    }
+                ],
+                email: [
+                    {
+                        type: 'email',
+                        required: true,
+                        message: '邮箱格式不正确',
+                        trigger: 'blur',
+                    },
+                ],
+                password: [
+                    {
+                        required: true,
+                        message: '密码不能为空',
+                        trigger: 'blur',
+                    },
+                    {
+                        min: 6,
+                        max: 30,
+                        message: '长度在6到30之间'
+                    }
+                ],
+                password2: [
+                    {
+                        required: true,
+                        message: '密码不能为空',
+                        trigger: 'blur',
+                    },
+                    {
+                        min: 6,
+                        max: 30,
+                        message: '长度在6到30之间'
+                    },
+                    {
+                        validator: validatePass2,
+                        trigger: 'blur',
+                    }
+                ]
             }
         };
     },
     methods: {
-        resetForm(formName) {
-            this.$refs[formName].resetFields();
+        submit(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (!valid) {
+                    return false;
+                }
+                register(this.registerForm).then(res => {
+                    this.$message.success(res.msg)
+                    this.$router.push('/login')
+                }).catch(err => {
+                    console.log(err);
+                })
+            })
         }
+    },
+    created() {
     }
 }
 </script>
