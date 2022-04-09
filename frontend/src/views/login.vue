@@ -34,6 +34,9 @@
 
 <script>
 import { login } from '@/api/user'
+import { mapActions } from 'vuex';
+import jwt_decode from 'jwt-decode'
+import { isEmpty } from '@/utils/util'
 export default {
     data() {
         return {
@@ -66,6 +69,7 @@ export default {
         };
     },
     methods: {
+        ...mapActions(['setAuthenticated', 'setUser']),
         goRegister() {
             this.$router.push('/register')
         },
@@ -76,7 +80,17 @@ export default {
                 }
                 login(this.loginForm).then(res => {
                     this.$message.success(res.msg)
+
+                    //存储到session
                     sessionStorage.setItem('token', res.token)
+
+                    //解析token
+                    const decodedToken = jwt_decode(res.token)
+
+                    //token 存vuex中
+                    this.setAuthenticated(!isEmpty(decodedToken))
+                    this.setUser(decodedToken)
+
                     this.$router.push('/index')
                 }).catch(err => {
                     console.log(err);
