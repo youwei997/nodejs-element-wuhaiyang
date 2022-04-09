@@ -23,6 +23,8 @@ router.post("/login", async (req, res) => {
     const rule = {
       id: user.id,
       username: user.username,
+      avatar: user.avatar,
+      identity: user.identity,
     };
     const token = await sign(rule, secretKey, { expiresIn: 3600 });
     res.json({ email, msg: "登录成功", code: 0, token: "Bearer " + token });
@@ -36,7 +38,7 @@ router.post("/login", async (req, res) => {
 
 //注册
 router.post("/register", async (req, res) => {
-  let { username, avatar, password, email } = req.body;
+  let { username, avatar, password, email, identity } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     return res.status(400).json({ msg: "邮箱已存在" });
@@ -47,7 +49,7 @@ router.post("/register", async (req, res) => {
         r: "pg", // 格式
         d: "mm", // mm：默认图
       });
-      const newUser = await User.create({ username, avatar, password, email });
+      const newUser = await User.create({ username, avatar, password, email, identity });
       res.json({
         code: 0,
         msg: "注册成功",
@@ -61,6 +63,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//当前用户
 router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
@@ -73,6 +76,7 @@ router.get(
         id: req.user.id,
         email: req.user.email,
         avatar: req.user.avatar,
+        identity: req.user.identity,
       },
     });
   }
