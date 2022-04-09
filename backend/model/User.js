@@ -23,7 +23,11 @@ const UserSchema = new Schema({
   identity: {
     //0：管理员，1：员工
     type: String,
-    default: "1",
+    // default: "1",//如果前端传空字符串或null，这里就没用
+    set(val) {
+      //过滤false值
+      return val ? val : '1'
+    },
   },
   date: {
     type: Date,
