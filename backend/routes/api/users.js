@@ -32,6 +32,7 @@ router.post("/login", async (req, res) => {
     res.json({
       msg: "服务器异常",
       code: 1,
+      data: error.message
     });
   }
 });
@@ -55,9 +56,11 @@ router.post("/register", async (req, res) => {
         msg: "注册成功",
       });
     } catch (error) {
+      console.log(error);
       res.json({
         code: 1,
         msg: "服务器异常",
+        data: error.message
       });
     }
   }
