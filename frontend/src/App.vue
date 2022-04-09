@@ -4,6 +4,22 @@
   </div>
 </template>
 
+<script>
+import jwt_decode from 'jwt-decode'
+import { isEmpty } from '@/utils/util'
+export default {
+  created() {
+    //解析token
+    if (sessionStorage.token) {
+      const decodedToken = jwt_decode(sessionStorage.token)
+
+      //token 存vuex中
+      this.$store.dispatch('setAuthenticated', !isEmpty(decodedToken))
+      this.$store.dispatch('setUser', decodedToken)
+    }
+  }
+}
+</script>
 <style lang="scss">
 html,
 body,
