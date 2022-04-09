@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
   let { username, avatar, password, email, identity } = req.body;
   const user = await User.findOne({ email });
   if (user) {
-    return res.status(400).json({ msg: "邮箱已存在" });
+    return res.json({ code: 1, msg: "邮箱已存在", data: '' });
   } else {
     try {
       avatar = gravatar.url(email, {

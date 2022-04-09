@@ -21,8 +21,9 @@ const UserSchema = new Schema({
     type: String,
   },
   identity: {
+    //0：管理员，1：员工
     type: String,
-    required: true
+    default: "1",
   },
   date: {
     type: Date,
