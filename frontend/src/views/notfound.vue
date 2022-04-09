@@ -1,10 +1,10 @@
 <template>
-    <div class="not_found">
+    <div class="not-found">
         <img src="@/assets/not_found.webp" alt />
     </div>
 </template>
 <style scoped>
-.not_found {
+.not-found {
     width: 100%;
     height: 100%;
 }
