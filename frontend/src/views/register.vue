@@ -39,11 +39,7 @@
                         </el-select>
                     </el-form-item>
 
-                    <el-button
-                        class="register-btn"
-                        type="primary"
-                        @click="submit('registerForm')"
-                    >注册</el-button>
+                    <el-button class="submit-btn" type="primary" @click="submit('registerForm')">注册</el-button>
                 </el-form>
             </el-main>
         </el-container>
@@ -177,7 +173,7 @@ export default {
         font-weight: bold;
     }
 
-    .register-btn,
+    .submit-btn,
     .el-select {
         width: 100%;
     }
