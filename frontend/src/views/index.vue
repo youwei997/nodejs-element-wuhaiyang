@@ -1,15 +1,19 @@
 <template>
-    <div>index</div>
+    <div>
+        <HeadNav></HeadNav>
+    </div>
 </template>
 
 <script>
+import HeadNav from '@/components/HeadNav.vue'
 export default {
+    components: {
+        HeadNav
+    },
     data() {
         return {
         }
     },
-
-    components: {},
 
     methods: {}
 }
