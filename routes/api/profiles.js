@@ -58,4 +58,27 @@ router.post('/edit/:id', passport.authenticate("jwt", { session: false }), async
     }
 })
 
+//编辑信息接口
+router.delete('/delete/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        //更新文档，并返回更新后的文档
+        const result = await Profile.findByIdAndDelete(req.params.id)
+        if (result) {
+            res.json({
+                code: 0,
+                data: result,
+                msg: '删除成功'
+            })
+        } else {
+            res.json({
+                code: 1,
+                data: result,
+                msg: '删除失败'
+            })
+        }
+    } catch (error) {
+        res.json({ error: error })
+    }
+})
+
 module.exports = router;
