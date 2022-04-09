@@ -7,3 +7,11 @@ export const register = (data) => {
         data
     })
 }
+
+export const login = (data) => {
+    return http({
+        url: '/api/users/login',
+        method: 'post',
+        data
+    })
+}
