@@ -9,23 +9,23 @@
             >
                 <router-link to="/home">
                     <el-menu-item index="0">首页</el-menu-item>
-                    <template v-for="item in items">
-                        <el-submenu v-if="item.children" :index="item.path" :key="item.path">
-                            <template slot="title">
-                                <span slot="title">{{ item.name }}</span>
-                            </template>
-                            <router-link
-                                v-for="citem in item.children"
-                                :to="citem.path"
-                                :key="citem.path"
-                            >
-                                <el-menu-item :index="citem.path">
-                                    <span slot="title">{{ citem.name }}</span>
-                                </el-menu-item>
-                            </router-link>
-                        </el-submenu>
-                    </template>
                 </router-link>
+                <template v-for="item in items">
+                    <el-submenu v-if="item.children" :index="item.path" :key="item.path">
+                        <template slot="title">
+                            <span slot="title">{{ item.name }}</span>
+                        </template>
+                        <router-link
+                            v-for="citem in item.children"
+                            :to="citem.path"
+                            :key="citem.path"
+                        >
+                            <el-menu-item :index="citem.path">
+                                <span slot="title">{{ citem.name }}</span>
+                            </el-menu-item>
+                        </router-link>
+                    </el-submenu>
+                </template>
             </el-menu>
         </el-col>
     </el-row>
@@ -55,8 +55,6 @@ export default {
     components: {},
 
     methods: {
-        methods: {
-        }
     }
 }
 </script>
