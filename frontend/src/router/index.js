@@ -11,7 +11,21 @@ const routes = [
   {
     path: '/index',
     name: 'index',
-    component: () => import('@/views/index')
+    component: () => import('@/views/index'),
+    children: [
+      //path不加内容,进入到/index,默认展示home
+      {
+        path: '',
+        component: () => import('@/views/home'),
+      },
+      //path加/home,进入到/home,也展示home
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home'),
+      }
+
+    ]
   },
   {
     path: '/register',
