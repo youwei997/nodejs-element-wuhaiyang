@@ -58,7 +58,7 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 20%;
-    background-position: -180px -212px;
+    // background-position: -180px -212px;
 }
 
 .frontend,
