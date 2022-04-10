@@ -8,7 +8,6 @@ export default {
     },
     methods: {
         dialogShow() {
-            console.log(1);
             this.dialogStatus = true
         },
         dialogClose() {
