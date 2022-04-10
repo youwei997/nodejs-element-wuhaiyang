@@ -21,7 +21,8 @@ router.post('/add', passport.authenticate("jwt", { session: false }), async (req
 // 查询所有信息
 router.get('/', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const profile = await Profile.find()
+        //.sort({ date: -1 }) 时间倒叙返回
+        const profile = await Profile.find().sort({ date: -1 })
         res.json({
             code: 0,
             data: profile
