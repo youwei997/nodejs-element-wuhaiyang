@@ -52,12 +52,13 @@ export default {
 .home {
     width: 100%;
     height: 100%;
-    background-image: url("https://img1.baidu.com/it/u=2077813032,3277848709&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800");
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.linuxidc.com%2Fupload%2F2013_03%2F130325190475721.jpg&refer=http%3A%2F%2Fwww.linuxidc.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652160755&t=7bffa2d95a5b4b3e71a8230b867f0e00");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     padding-left: 20%;
+    background-position: -180px -212px;
 }
 
 .frontend,
