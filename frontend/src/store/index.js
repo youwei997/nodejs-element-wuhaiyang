@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -51,12 +52,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    //存储是否授权
     setAuthenticated({ commit }, isAuthenticated) {
       commit('SET_AUTHENTICATED', isAuthenticated)
     },
+    //存储用户信息
     setUser({ commit }, user) {
       commit('SET_USER', user)
     },
+    //退出登录
+    logout({ commit }) {
+      commit('SET_AUTHENTICATED', false)
+      commit('SET_USER', {})
+      sessionStorage.clear()
+      router.push('/login')
+    }
   },
   modules: {
   }
