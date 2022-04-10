@@ -7,6 +7,7 @@ module.exports = defineConfig({
       '/api': {
         target: url,
         change: true,
+        ws: true,
         pathRewrite: {
           '^/api': '/'
         }
