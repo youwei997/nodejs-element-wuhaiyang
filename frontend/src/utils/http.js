@@ -48,16 +48,14 @@ axios.interceptors.response.use(res => {
 }, (error) => {
     closeLoading()
     // 对请求错误做些什么
-    Message.error(error.message)
-
     const { status } = error.response
-    if (status === '401') {
+    if (status == '401') {
         Message.error('token失效,请重新登录')
         //清除token
         sessionStorage.removeItem('token')
-        router.push('/login')
+        return router.push('/login')
     }
-
+    Message.error(error.message)
     return Promise.reject(error);
 })
 
