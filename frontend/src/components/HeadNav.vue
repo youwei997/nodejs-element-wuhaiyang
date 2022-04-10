@@ -55,6 +55,7 @@ export default {
 
         },
         showInfo() {
+            this.$router.push('/info')
         }
     }
 }
@@ -73,7 +74,7 @@ export default {
     height: 60px;
     min-width: 600px;
     padding: 5px;
-    background: #324057;
+    background: #242a1c;
     color: #fff;
     border: 1px solid #1f2d3d;
     display: flex;
