@@ -1,6 +1,13 @@
+
 import axios from 'axios'
 import { Message, Loading } from 'element-ui';
 import router from '@/router/index'
+
+//创建axios实例对象，添加全局配置
+// axios.create({
+//     baseURL: config.baseApi,
+//     timeout: 8000,
+// });
 
 let loading;
 const startLoading = () => {
@@ -28,6 +35,7 @@ axios.interceptors.request.use(config => {
 }, (error) => {
     // 对请求错误做些什么
     return Promise.reject(error);
+    // Message.error(error.message)
 })
 
 
@@ -53,7 +61,8 @@ axios.interceptors.response.use(res => {
         Message.error('token失效,请重新登录')
         //清除token
         sessionStorage.removeItem('token')
-        return router.push('/login')
+        router.push('/login')
+        return Promise.reject(error)
     }
     Message.error(error.message)
     return Promise.reject(error);
