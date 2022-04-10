@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: '/index',
-    name: 'index',
+    // name: 'index',
     component: () => import('@/views/index'),
     children: [
       //path不加内容,进入到/index,默认展示home
@@ -30,7 +30,11 @@ const routes = [
         name: 'info',
         component: () => import('@/views/info')
       },
-
+      {
+        path: '/fundlist',
+        name: 'fundlist',
+        component: () => import('@/views/fundlist')
+      },
     ]
   },
   {
