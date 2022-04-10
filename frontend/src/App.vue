@@ -33,4 +33,7 @@ img {
   height: 100%;
   display: block;
 }
+div {
+  box-sizing: border-box;
+}
 </style>
