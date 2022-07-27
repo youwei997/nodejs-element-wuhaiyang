@@ -1,24 +1,11 @@
-# frontend
+## Vue+node.js 全栈项目-资金管理系统带权限 前端
 
-## Project setup
-```
-npm install
-```
+## 一、技术栈
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+该项目主要使用`vue`搭配`element-ui`采用组件化的方式开发完成,此外项目中陆续使用有
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- jwt-decode
+- vue-router
+- vuex
+- sass
+- eslint
